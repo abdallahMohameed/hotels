@@ -1,0 +1,19 @@
+
+.gradient-custom {
+	background: linear-gradient(45deg,#000000, #434343) !important;
+    min-height: 892px !important;
+
+	}
+
+    .color{
+        background: #AD7153;
+
+    }
+    .navbar{
+        background: linear-gradient(45deg,#414141, #000000) !important;
+    
+    }
+
+    .textColor{
+        color: #1B2D4F;
+    }

@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+.img-fluid{
+    height: 100% !important;
+}
+
+
+::-webkit-scrollbar:horizontal {
+    display: none;
+  }
+  ::-webkit-scrollbar
+  {
+      width: 10px !important;
+  }
+  
+   ::-webkit-scrollbar-thumb
+  {
+      background: linear-gradient(to top,#414141, #000000) !important;
+      border-radius: 6px !important;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover
+  {
+      background: grey !important;
+  
+  } 

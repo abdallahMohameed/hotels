@@ -1,0 +1,71 @@
+
+<nav class="navbar  navbar-dark" >
+    <div class="container-fluid">
+      <a class="navbar-brand">Old Bank Hotel</a>
+     <div>
+         <button class="btn btn-outline-primary mx-1" (click)="gotoBooking()"  > Book rooms</button>
+        <button class="btn btn-outline-primary mx-1" (click)="logout()"  >Sign  out </button>
+     </div>
+  
+    </div>
+  </nav>
+
+<section class="h-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-10 col-xl-8">
+          <div class="card rounded-3">
+            <div class="card-header px-4 py-5">
+              <h5 class="text-muted mb-0">Thanks for your Order, <span class="textColor">{{userName}} !</span></h5>
+            </div>
+            <div class="card-body p-4">
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <p class="lead fw-normal mb-0 textColor">Receipt</p>
+              </div>
+              <div class="card shadow-0 border mb-4">
+                <div class="card-body" *ngFor="let booking of pendingBookings;">
+                  <div class="row">
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0">Branch:<strong>{{booking.room?.branch?.locationName}}</strong></p>
+                    </div>
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0 small">Room Number:<strong>{{booking.roomId}}</strong></p>
+                    </div>
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0 small">From:<strong>{{booking.bookingFrom|date:"shortDate"}}</strong></p>
+                    </div>
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0 small">To: <strong>{{booking.bookingTo|date:"shortDate"}}</strong></p>
+                    </div>
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0 small">price/day =<strong>{{booking.room?.pricePerDay}}$</strong></p>
+                    </div>
+
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0 small">Total =<strong>{{multiply(booking.DifferenceInDays,booking.room?.pricePerDay)}}$</strong></p>
+                    </div>
+                  </div>
+            
+                </div>
+              </div>
+  
+              <p class="fw-bold mb-0">Order Details</p>
+              <div class="d-flex justify-content-between pt-2">
+                <p class="text-muted mb-0"><span class="fw-bold me-4">Total</span> ${{finalPrice?.priceBeforeDiscount}}</p>
+              </div>
+  
+              <div class="d-flex justify-content-between pt-2">
+                <p class="text-muted mb-0"><span class="fw-bold me-4">Discount</span> ${{finalPrice?.discountValue}}</p>
+              </div>
+  
+            </div>
+            <div class="card-footer d-flex justify-content-between border-0 px-4 py-4 color">
+              <h5 class="d-flex align-items-center  text-white text-uppercase mb-0 rounded-bottom">Total
+                Payment: <span class="h2 mb-0 ms-2">{{finalPrice?.priceAfterDiscount??"0"}}$</span></h5>
+                <button type="button" (click)="confirmBooking()" class="btn btn-outline-dark btn-lg text-uppercase mb-0 rounded-bottom">Pay and Book</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

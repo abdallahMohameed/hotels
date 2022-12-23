@@ -1,0 +1,98 @@
+<nav class="navbar  navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand">Old Bank Hotel</a>
+     <div>
+         <button class="btn btn-outline-primary mx-1" (click)="gotoConfirmReservation()" >Pending Reservations</button>
+        <button class="btn btn-outline-primary mx-1" (click)="logout()"  >Sign out</button>
+     </div>
+  
+    </div>
+  </nav>
+
+  <div id="booking" class="section">
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="booking-cta">
+                    <h1>Make Your Reservation</h1>
+                </div>
+                <div class="booking-form">
+                    <form>
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="form-group">
+                                    <span class="form-label">Branch</span>
+                                    <select (change)="getRooms($event)" class="form-control">
+                                        <option selected disabled hidden>Select a branch</option>
+                                        <option *ngFor="let item of branches" [value]="item.branchId">{{item.locationName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <span class="form-label">Room</span>
+                                    <select (change)="getprice($event)" class="form-control">
+                                        <option selected disabled hidden>Select Room Number</option>
+                                        <option *ngFor="let item of rooms" [value]="item.roomId">{{item.roomId}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <span class="form-label">Room Type</span>
+                                    <span class="form-control">{{selectedRoom?.roomType??"--"}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span class="form-label">Price per day</span>
+                                     <span class="form-control">{{selectedRoom?.pricePerDay??"0 "}} $</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+
+                                    <span class="form-label">Number Of Guests</span>
+                                    <select (change)="validateCapacity($event.target)" class="form-control">
+                                        <option selected disabled hidden>Select number Of Guests</option>
+                                        <option value="1" >1</option>
+                                        <option value="2" >2</option>
+                                        <option value="3">3</option>
+                                        <option value="4" >More than 3</option>
+                                    </select>
+                                
+                                    
+                                </div>
+                            </div>
+                                
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                      <mat-form-field appearance="fill" class="w-100 h-100">
+                                        <mat-label class="dateInput">Enter a date range</mat-label>
+                                        <mat-date-range-input [min]="todayDate" [dateFilter]="BookedDays" [rangePicker]="range">
+                                          <input class="dateInput" (dateChange)="changeDate($event.value, 1)"  matStartDate  placeholder="Start date">
+                                          <input class="dateInput" (dateChange)="changeDate($event.value, 2)"  matEndDate placeholder="End date">
+                                        </mat-date-range-input>
+                                        <mat-datepicker-toggle matIconSuffix [for]="range"></mat-datepicker-toggle>
+                                        <mat-date-range-picker #range></mat-date-range-picker>
+                                      </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-btn">
+                                <button class="submit-btn" (click)="addPending()">Add Booking to your cart</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
