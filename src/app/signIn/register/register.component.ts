@@ -53,6 +53,7 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem("userName",a.userName)
         localStorage.setItem("userId",a.userId)
         localStorage.setItem("isFirstBooking",a.isFirstBooking)
+       this.NotificationService.setNotification({ message:"registration Done successfully !",type: "success" })
         this.router.navigateByUrl("/booking")
 
 

@@ -63,6 +63,8 @@ export class BookingDetailsComponent implements OnInit{
   confirmBooking(){
     this.bookingService.addNewBooking(this.pendingBookings).subscribe(res=>{
       console.log(res);
+      this.NotificationService.setNotification({ message:"Booking Done successfully !",type: "success" })
+
       
     },err=>{
     this.NotificationService.setNotification({ message: err.error??"Unexpected error,please try again later",type: "error" })
